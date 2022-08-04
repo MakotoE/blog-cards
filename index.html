@@ -74,7 +74,7 @@
         >
 
         <h3 class="p-heading--4">
-            <a id="title">The power of installed-base snap metrics</a>
+          <a id="title">The power of installed-base snap metrics</a>
         </h3>
 
         <em>
@@ -89,32 +89,32 @@
 
   <script>
     window.onload = async () => {
-		  const url = 'https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json';
-		  const response = await fetch(url);
-		  if (!response.ok) {
-			  throw new Error(await response.text());
-		  }
+      const url = 'https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json';
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
 
-		  const responseBody = await response.json();
+      const responseBody = await response.json();
 
-		  for (let i = 0; i < Math.min(3, responseBody.length); i++) {
-		    const post = responseBody[i];
-		    console.log(post);
+      for (let i = 0; i < Math.min(3, responseBody.length); i++) {
+        const post = responseBody[i];
+        console.log(post);
 
-			  const node = document.getElementById('cardTemplate').cloneNode(true);
-			  node.id = `card${i}`;
-		    node.hidden = false;
+        const node = document.getElementById('cardTemplate').cloneNode(true);
+        node.id = `card${i}`;
+        node.hidden = false;
 
         node.querySelector('#category').textContent = post._embedded['wp:term'][1][0].name;
         node.querySelector('#featuredImage').setAttribute('src', post.featured_media);
         node.querySelector('#title').textContent = post.title.rendered;
         node.querySelector('#author').textContent = post._embedded.author[0].name;
 
-		    const date = luxon.DateTime.fromISO(post.date);
+        const date = luxon.DateTime.fromISO(post.date);
         node.querySelector('#publishDate').textContent = date.toFormat('d MMMM yyyy');
 
         document.getElementById('container').appendChild(node);
-		  }
+      }
     }
   </script>
 </body>
