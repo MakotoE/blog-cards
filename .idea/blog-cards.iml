@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="vanilla-framework-version-3.6.1" level="application" />
+    <orderEntry type="library" name="luxon" level="application" />
   </component>
 </module>

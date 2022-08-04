@@ -8,6 +8,10 @@
     rel="stylesheet"
     href="https://assets.ubuntu.com/v1/vanilla-framework-version-3.6.1.min.css"
   />
+  <script
+    src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"
+  ></script>
+
   <style>
     .blogContainer {
       display: flex;
@@ -102,7 +106,9 @@
         node.querySelector('#featuredImage').setAttribute('src', post.featured_media);
         node.querySelector('#title').textContent = post.title.rendered;
         node.querySelector('#author').textContent = post._embedded.author[0].name;
-        node.querySelector('#publishDate').textContent = post.date;
+
+		    const date = luxon.DateTime.fromISO(post.date);
+        node.querySelector('#publishDate').textContent = date.toFormat('d MMMM yyyy');
 
         document.getElementById('container').appendChild(node);
 		  }
