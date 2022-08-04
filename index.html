@@ -11,6 +11,7 @@
   <script
     src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"
   ></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     .blogContainer {
@@ -58,6 +59,7 @@
     <div
       id="cardTemplate"
       class="p-card blogCard"
+      hidden
     >
       <header class="blogCardHeader">
         <h5 id="category" class="p-muted-heading blogCardHeaderText">
@@ -101,6 +103,7 @@
 
 			  const node = document.getElementById('cardTemplate').cloneNode(true);
 			  node.id = `card${i}`;
+		    node.hidden = false;
 
         node.querySelector('#category').textContent = post._embedded['wp:term'][1][0].name;
         node.querySelector('#featuredImage').setAttribute('src', post.featured_media);
@@ -112,8 +115,6 @@
 
         document.getElementById('container').appendChild(node);
 		  }
-
-	    document.getElementById('cardTemplate').hidden = true;
     }
   </script>
 </body>
