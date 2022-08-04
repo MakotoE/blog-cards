@@ -18,7 +18,7 @@
     .blogCard {
       padding: 0;
       width: 325px;
-      height: 420px;
+      height: 450px;
       border: 0;
       box-shadow: 0 0 5px #8b8b8b;
     }
@@ -49,27 +49,30 @@
   </style>
 </head>
 <body>
-  <div class="blogContainer">
+  <div id="container" class="blogContainer">
     <div
-      id="card"
+      id="cardTemplate"
       class="p-card blogCard"
     >
       <header class="blogCardHeader">
-        <h5 class="p-muted-heading blogCardHeaderText">
+        <h5 id="category" class="p-muted-heading blogCardHeaderText">
           Cloud and Server
         </h5>
       </header>
       <div class="blogCardInner">
         <img
+          id="featuredImage"
           src="https://ubuntu.com/wp-content/uploads/5288/Title-Cards.jpg"
           alt="article preview"
         >
 
         <h3>
-            <a>The power of installed-base snap metrics</a>
+            <a id="title">The power of installed-base snap metrics</a>
         </h3>
 
-        <em>By <a>cprov</a> on 27 November 2018</em>
+        <em>
+          By <a id="author">cprov</a> on <span id="publishDate">27 November 2018</span>
+        </em>
       </div>
       <p class="blogCardFooter">
         Article
@@ -78,9 +81,28 @@
   </div>
 
   <script>
-    window.onload = () => {
-      // const node = document.getElementById('card').cloneNode(true);
-      // document.body.appendChild(node);
+    window.onload = async () => {
+		  const url = 'https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json';
+		  const response = await fetch(url);
+		  if (!response.ok) {
+			  throw new Error(await response.text());
+		  }
+
+		  const responseBody = await response.json();
+		  console.log(responseBody);
+
+		  const post = responseBody[0];
+
+      const node = document.getElementById('cardTemplate').cloneNode(true);
+	    document.getElementById('cardTemplate').hidden = true;
+
+	    document.getElementById('container').appendChild(node);
+
+		  node.querySelector('#category').textContent = post._embedded['wp:term'][1][0].name;
+		  node.querySelector('#featuredImage').setAttribute('src', post.featured_media);
+      node.querySelector('#title').textContent = post.title.rendered;
+	    node.querySelector('#author').textContent = post._embedded.author[0].name;
+		  node.querySelector('#publishDate').textContent = post.date;
     }
   </script>
 </body>
