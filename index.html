@@ -18,13 +18,14 @@
     .blogCard {
       padding: 0;
       width: 325px;
-      height: 450px;
+      height: fit-content;
       border: 0;
       box-shadow: 0 0 5px #8b8b8b;
+      margin: 0 15px;
     }
 
     .blogCardHeader {
-      padding: 16px;
+      padding: 14px;
       border-top: 3px solid #a87ca0;
     }
 
@@ -41,7 +42,7 @@
     }
 
     .blogCardFooter {
-      padding: 16px;
+      padding: 14px;
       font-size: 0.875rem;
       margin: 0;
     }
@@ -66,7 +67,7 @@
           alt="article preview"
         >
 
-        <h3>
+        <h3 class="p-heading--4">
             <a id="title">The power of installed-base snap metrics</a>
         </h3>
 
@@ -89,20 +90,24 @@
 		  }
 
 		  const responseBody = await response.json();
-		  console.log(responseBody);
 
-		  const post = responseBody[0];
+		  for (let i = 0; i < Math.min(3, responseBody.length); i++) {
+		    const post = responseBody[i];
+		    console.log(post);
 
-      const node = document.getElementById('cardTemplate').cloneNode(true);
+			  const node = document.getElementById('cardTemplate').cloneNode(true);
+			  node.id = `card${i}`;
+
+        node.querySelector('#category').textContent = post._embedded['wp:term'][1][0].name;
+        node.querySelector('#featuredImage').setAttribute('src', post.featured_media);
+        node.querySelector('#title').textContent = post.title.rendered;
+        node.querySelector('#author').textContent = post._embedded.author[0].name;
+        node.querySelector('#publishDate').textContent = post.date;
+
+        document.getElementById('container').appendChild(node);
+		  }
+
 	    document.getElementById('cardTemplate').hidden = true;
-
-	    document.getElementById('container').appendChild(node);
-
-		  node.querySelector('#category').textContent = post._embedded['wp:term'][1][0].name;
-		  node.querySelector('#featuredImage').setAttribute('src', post.featured_media);
-      node.querySelector('#title').textContent = post.title.rendered;
-	    node.querySelector('#author').textContent = post._embedded.author[0].name;
-		  node.querySelector('#publishDate').textContent = post.date;
     }
   </script>
 </body>
