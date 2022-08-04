@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Blog Cards</title>
+  <meta name="referrer" content="no-referrer">
   <link
     rel="stylesheet"
     href="https://assets.ubuntu.com/v1/vanilla-framework-version-3.6.1.min.css"
@@ -16,8 +17,8 @@
 
     .blogCard {
       padding: 0;
-      width: 300px;
-      height: 400px;
+      width: 325px;
+      height: 420px;
       border: 0;
       box-shadow: 0 0 5px #8b8b8b;
     }
@@ -27,15 +28,24 @@
       border-top: 3px solid #a87ca0;
     }
 
+    .blogCardHeaderText {
+      margin-bottom: 0;
+      padding: 0;
+    }
+
     .blogCardInner {
-      padding: 16px;
+      padding: 16px 8px;
       border-top: 1px dotted #d9d9d9;
       border-bottom: 1px dotted #d9d9d9;
+      margin: 0 8px;
     }
 
     .blogCardFooter {
       padding: 16px;
+      font-size: 0.875rem;
+      margin: 0;
     }
+
   </style>
 </head>
 <body>
@@ -45,22 +55,25 @@
       class="p-card blogCard"
     >
       <header class="blogCardHeader">
-        <h5 class="p-muted-heading">
+        <h5 class="p-muted-heading blogCardHeaderText">
           Cloud and Server
         </h5>
       </header>
       <div class="blogCardInner">
-        <h2>
-            <a>The power of installed-base snap metrics</a>
-        </h2>
+        <img
+          src="https://ubuntu.com/wp-content/uploads/5288/Title-Cards.jpg"
+          alt="article preview"
+        >
 
-        <i>By <a>cprov</a> on 27 November 2018</i>
+        <h3>
+            <a>The power of installed-base snap metrics</a>
+        </h3>
+
+        <em>By <a>cprov</a> on 27 November 2018</em>
       </div>
-      <div class="blogCardFooter">
-        <p>
-          Article
-        </p>
-      </div>
+      <p class="blogCardFooter">
+        Article
+      </p>
     </div>
   </div>
 
