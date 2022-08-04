@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Cards</title>
+  <link
+    rel="stylesheet"
+    href="https://assets.ubuntu.com/v1/vanilla-framework-version-3.6.1.min.css"
+  />
+  <style>
+    .blogContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .blogCard {
+      padding: 0;
+      width: 300px;
+      height: 400px;
+      border: 0;
+      box-shadow: 0 0 5px #8b8b8b;
+    }
+
+    .blogCardHeader {
+      padding: 16px;
+      border-top: 3px solid #a87ca0;
+    }
+
+    .blogCardInner {
+      padding: 16px;
+      border-top: 1px dotted #d9d9d9;
+      border-bottom: 1px dotted #d9d9d9;
+    }
+
+    .blogCardFooter {
+      padding: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="blogContainer">
+    <div
+      id="card"
+      class="p-card blogCard"
+    >
+      <header class="blogCardHeader">
+        <h5 class="p-muted-heading">
+          Cloud and Server
+        </h5>
+      </header>
+      <div class="blogCardInner">
+        <h2>
+            <a>The power of installed-base snap metrics</a>
+        </h2>
+
+        <i>By <a>cprov</a> on 27 November 2018</i>
+      </div>
+      <div class="blogCardFooter">
+        <p>
+          Article
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      // const node = document.getElementById('card').cloneNode(true);
+      // document.body.appendChild(node);
+    }
+  </script>
+</body>
+</html>
